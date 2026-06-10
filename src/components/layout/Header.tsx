@@ -13,8 +13,8 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Container className={styles.inner}>
-        <Link href="/" className={styles.wordmark} aria-label="Expressed — home">
-          Expressed
+        <Link href="/" className={styles.wordmark} aria-label="Colophon — home">
+          Colophon bookstore and press
         </Link>
         <nav aria-label="Primary">
           <ul className={styles.nav}>

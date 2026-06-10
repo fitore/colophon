@@ -16,7 +16,7 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className={styles.pillars} aria-label="What Expressed offers">
+      <section className={styles.pillars} aria-label="What Colophon offers">
         <Container className={styles.pillarGrid}>
           <PillarCard
             href="/bookstore"
@@ -43,7 +43,7 @@ export default function HomePage() {
         <Container>
           <div className={styles.rowHead}>
             <div>
-              <p className="eyebrow">Expressed Books</p>
+              <p className="eyebrow">Colophon Books</p>
               <h2 id="books-heading" className={styles.rowTitle}>
                 From the shelf
               </h2>

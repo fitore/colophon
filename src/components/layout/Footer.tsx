@@ -13,7 +13,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <Container className={styles.inner}>
         <div className={styles.brand}>
-          <p className={styles.imprint}>Colophon · An Expressed Press</p>
+          <p className={styles.imprint}>Colophon · Bookstore &amp; Press</p>
           <p className={styles.place}>Ontario, Canada</p>
         </div>
 

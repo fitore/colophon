@@ -10,7 +10,7 @@ export const pressPosts: PressPost[] = [
     title: "The Quiet Strength of Paper",
     dek: "Why a well-chosen stock outlasts the trend that printed it.",
     date: "2026-05-18",
-    author: "Expressed",
+    author: "Colophon",
     category: "Materials",
     body: [
       "Paper is the part of a book most readers never name, and the part they remember longest in the hand. Its weight, its tooth, the way it takes ink — these decide how a page feels before a single word is read.",
@@ -27,7 +27,7 @@ export const pressPosts: PressPost[] = [
     title: "Designing for Endurance",
     dek: "Notes on building objects meant to be kept, not consumed.",
     date: "2026-04-30",
-    author: "Expressed",
+    author: "Colophon",
     category: "Method",
     body: [
       "Endurance is a design constraint, not a marketing claim. It shows up in the choices nobody photographs: the sewing, the grain direction, the glue that stays flexible.",
@@ -42,12 +42,12 @@ export const pressPosts: PressPost[] = [
   {
     slug: "notes-from-the-press",
     title: "Notes from the Press",
-    dek: "A first dispatch — where Expressed begins, and where it is going.",
+    dek: "A first dispatch — where Colophon begins, and where it is going.",
     date: "2026-04-02",
-    author: "Expressed",
+    author: "Colophon",
     category: "Dispatch",
     body: [
-      "Expressed begins online, quietly, as an experiment in publishing without a storefront. No cart, no countdown — only books worth recording an interest in.",
+      "Colophon begins online, quietly, as an experiment in publishing without a storefront. No cart, no countdown — only books worth recording an interest in.",
       "The Press is where we think out loud about that experiment: the editions we are planning, the makers we admire, the small decisions that add up to a house style.",
       "If something here resonates, keep the record. We'll write when there is something true to say.",
     ],

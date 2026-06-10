@@ -20,11 +20,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Expressed",
-    template: "%s · Expressed",
+    default: "Colophon",
+    template: "%s · Colophon",
   },
   description:
-    "Expressed is an online-first publishing, press, and bookshop experiment based in Ontario, Canada.",
+    "Colophon is an online-first publishing, press, and bookshop experiment based in Ontario, Canada.",
 };
 
 export default function RootLayout({
