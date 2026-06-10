@@ -16,7 +16,7 @@ export default function Hero() {
     <section className={styles.hero}>
       <Container className={styles.inner}>
         <div className={styles.copy}>
-          <p className="eyebrow">An Expressed Press · Ontario, Canada</p>
+          <p className="eyebrow">A Colophon Press · Ontario, Canada</p>
           <h1 className={styles.poem}>
             {POEM.map((line) => (
               <span key={line} className={styles.line}>

@@ -1,10 +1,10 @@
-# CLAUDE.md — Expressed
+# CLAUDE.md — Colophon
 
 > This is the canonical agent instruction file. `AGENTS.md` is a symlink (or byte-identical copy) of this file so that Codex and Claude Code read the same source of truth. If you edit one, `diff CLAUDE.md AGENTS.md` must return nothing.
 
 ## What this is
 
-Expressed is an online-first publishing, press, and bookshop experiment based in Ontario, Canada.
+Colophon is an online-first publishing, press, and bookshop experiment based in Ontario, Canada.
 
 Phase 1 is presence + soft commerce:
 - Home
@@ -49,9 +49,9 @@ This is a PMF experiment without a paid platform. Do not build full ecommerce ye
 - No cart, no checkout, no Stripe, no Shopify, no Wix.
 - No cart icon in Phase 1.
 - No fake urgency, countdowns, popups, or email-capture gates.
-- No “Studio Expressed” anywhere.
-- Public brand is `Expressed`.
-- Imprint lockup, where needed: `Colophon · An Expressed Press`.
+- No “Studio Colophon” anywhere.
+- Public brand is `Colophon`.
+- Imprint lockup, where needed: `Colophon · Bookstore & Press`.
 - Ruby is reserved for scarcity/status labels only. No ruby buttons.
 - Primary CTAs use ink background and paper text.
 - No text on top of glass artwork.

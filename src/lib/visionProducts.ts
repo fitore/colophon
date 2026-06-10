@@ -12,7 +12,7 @@ export const visionProducts: VisionProduct[] = [
     title: "First Light",
     kind: "edition",
     description:
-      "The inaugural Expressed edition — letterpress text, hand-sewn, in a cloth case stamped with the colophon.",
+      "The inaugural Colophon edition — letterpress text, hand-sewn, in a cloth case stamped with the colophon.",
     material: "Mohawk cotton, book cloth, foil",
     dimensions: "210 × 140 mm",
     edition: "Edition of 50",
@@ -86,7 +86,7 @@ export const visionProducts: VisionProduct[] = [
     title: "House Mark Medallion",
     kind: "object",
     description:
-      "A small pressed-metal medallion of the Expressed colophon, tucked into the deluxe editions.",
+      "A small pressed-metal medallion of the Colophon house mark, tucked into the deluxe editions.",
     material: "Pressed brass",
     dimensions: "32 mm",
     scarcityLabel: "With editions only",

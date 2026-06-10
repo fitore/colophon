@@ -1,5 +1,5 @@
 /**
- * Expressed — shared domain types and soft-commerce helpers.
+ * Colophon — shared domain types and soft-commerce helpers.
  *
  * Soft commerce is mailto-only in Phase 1. No cart, no checkout.
  * All mailto subjects are encoded with encodeURIComponent.
