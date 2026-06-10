@@ -1,0 +1,70 @@
+.pillars {
+  padding-block: var(--space-7);
+}
+
+.pillarGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.row {
+  padding-block: var(--space-6);
+}
+
+.rowHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--border-hairline);
+}
+
+.rowTitle {
+  margin-top: var(--space-1);
+  font-size: var(--text-2xl);
+}
+
+.rowLink {
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.rowLink:hover {
+  color: var(--color-ink);
+}
+
+.bookGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5) var(--space-4);
+}
+
+.pressGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .pillarGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .bookGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .pressGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
