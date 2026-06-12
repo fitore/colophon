@@ -1,0 +1,32 @@
+.links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.links a {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-bottom: var(--border-hairline);
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+}
+
+.links a:nth-child(odd) {
+  border-right: var(--border-hairline);
+}
+
+@media (max-width: 40rem) {
+  .links {
+    grid-template-columns: 1fr;
+  }
+
+  .links a {
+    padding-inline: 0;
+  }
+
+  .links a:nth-child(odd) {
+    border-right: 0;
+  }
+}

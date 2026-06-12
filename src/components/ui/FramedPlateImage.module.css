@@ -1,0 +1,22 @@
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: var(--border-hairline);
+  padding: var(--space-2);
+  background: var(--color-paper);
+}
+
+.portrait {
+  aspect-ratio: 3 / 5;
+}
+
+.image {
+  object-fit: cover;
+  padding: var(--space-2);
+}
+
+.placeholder {
+  position: absolute;
+  inset: var(--space-2);
+  background: var(--color-placeholder);
+}

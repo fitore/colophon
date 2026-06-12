@@ -1,0 +1,18 @@
+.rule {
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-5);
+  color: var(--color-ink);
+}
+
+.rule::before,
+.rule::after {
+  width: 100%;
+  border-top: var(--border-hairline);
+  content: "";
+}
+
+.mark {
+  padding-inline: var(--space-3);
+  font-size: var(--text-xs);
+}

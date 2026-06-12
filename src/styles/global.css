@@ -1,8 +1,3 @@
-/**
- * Colophon — global resets and base element styling.
- * Tokens come from tokens.css; no raw hex here.
- */
-
 *,
 *::before,
 *::after {
@@ -20,15 +15,12 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: var(--color-bg);
+  background: var(--color-paper);
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: var(--text-base);
   line-height: var(--leading-normal);
-  font-weight: var(--weight-regular);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 img,
@@ -47,13 +39,6 @@ select {
   color: inherit;
 }
 
-button {
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -67,11 +52,11 @@ ol {
 
 :focus-visible {
   outline: 2px solid var(--color-ink);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 ::selection {
-  background-color: var(--color-ink);
+  background: var(--color-ink);
   color: var(--color-paper);
 }
 
@@ -79,9 +64,6 @@ ol {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
