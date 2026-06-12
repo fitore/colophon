@@ -12,37 +12,21 @@ function formatDate(iso: string): string {
   }).format(new Date(iso));
 }
 
-/** Editorial card for The Press index and the homepage row. */
 export default function PressCard({ post }: { post: PressPost }) {
   const href = `/the-press/${post.slug}`;
-
   return (
-    <article className={styles.card}>
-      <Link href={href} className={styles.thumbLink} aria-label={`Read ${post.title}`}>
-        <div className={styles.thumb}>
-          {post.thumbImage ? (
-            <Image
-              src={post.thumbImage}
-              alt={post.thumbAlt ?? `Thumbnail for ${post.title}`}
-              fill
-              sizes="(max-width: 48rem) 100vw, 22rem"
-              className={styles.thumbImage}
-            />
-          ) : (
-            <span className={styles.placeholder} aria-hidden="true" />
-          )}
-        </div>
+    <article className={styles.row}>
+      <Link href={href} className={styles.thumb} aria-label={`Read ${post.title}`}>
+        {post.thumbImage ? (
+          <Image src={post.thumbImage} alt={post.thumbAlt ?? ""} fill sizes="12rem" className={styles.image} />
+        ) : <span className={styles.placeholder} aria-hidden="true" />}
       </Link>
-      <div className={styles.meta}>
-        <span className="eyebrow">{post.category}</span>
-        <time dateTime={post.date} className={styles.date}>
-          {formatDate(post.date)}
-        </time>
+      <div className={styles.copy}>
+        <h3><Link href={href}>{post.title}</Link></h3>
+        <p>{post.dek}</p>
+        <p className={styles.meta}>{formatDate(post.date)} · {post.category}</p>
       </div>
-      <h3 className={styles.title}>
-        <Link href={href}>{post.title}</Link>
-      </h3>
-      <p className={styles.dek}>{post.dek}</p>
+      <Link href={href} className={styles.read}>Read essay →</Link>
     </article>
   );
 }

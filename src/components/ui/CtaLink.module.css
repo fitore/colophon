@@ -10,7 +10,6 @@
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   border: 1px solid transparent;
-  border-radius: var(--radius-sm);
   transition:
     background-color var(--transition-base),
     color var(--transition-base),
@@ -35,4 +34,18 @@
 .secondary:hover {
   background-color: var(--color-ink);
   color: var(--color-paper);
+}
+
+.text {
+  padding-inline: 0;
+  color: var(--color-ink);
+}
+
+.text::after {
+  content: "→";
+}
+
+.text:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }

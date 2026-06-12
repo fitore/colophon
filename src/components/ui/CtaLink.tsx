@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import styles from "./CtaLink.module.css";
 
-type Variant = "primary" | "secondary";
+type Variant = "primary" | "secondary" | "text";
 
 interface CtaLinkProps {
   href: string;

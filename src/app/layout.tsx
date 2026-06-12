@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import PageShell from "@/components/layout/PageShell";
 import "@/styles/tokens.css";
 import "@/styles/global.css";
 import "@/styles/typography.css";
@@ -33,9 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <PageShell>{children}</PageShell>
       </body>
     </html>
   );
