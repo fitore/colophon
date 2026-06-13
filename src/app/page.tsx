@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import BookCard from "@/components/books/BookCard";
-import FeatureCell from "@/components/editorial/FeatureCell";
 import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import FramedPlateImage from "@/components/ui/FramedPlateImage";
@@ -12,9 +12,30 @@ import editorial from "@/components/editorial/editorial.module.css";
 import styles from "./page.module.css";
 
 const features = [
-  { title: "Bookstore", description: "Curated books that shape how we read, think, and make.", href: "/bookstore", ctaLabel: "Browse books" },
-  { title: "The Press", description: "Notes, essays, and records of print, editions, and the work of making.", href: "/the-press", ctaLabel: "Read the press" },
-  { title: "The Studio", description: "Workshops, open studio sessions, drawing, printmaking, and art printing.", href: "/studio", ctaLabel: "Visit the studio" },
+  {
+    title: "Bookstore",
+    description: "Curated books that shape how we read, make, and remember.",
+    href: "/bookstore",
+    ctaLabel: "Browse books",
+    image: "/images/glass/bookstore-pillar.png",
+    imageAlt: "Small stained-glass panel with pages and a ruby mark.",
+  },
+  {
+    title: "The Press",
+    description: "Essays, notes, and reflections on print, editions, and the work of making.",
+    href: "/the-press",
+    ctaLabel: "Explore the press",
+    image: "/images/glass/press-pillar.png",
+    imageAlt: "Small stained-glass panel with pages, a sun, and a ruby mark.",
+  },
+  {
+    title: "The Studio",
+    description: "Workshops, open studio sessions, drawing, printmaking, and art printing.",
+    href: "/studio",
+    ctaLabel: "Visit the studio",
+    image: "/images/glass/studio-panel.png",
+    imageAlt: "Small stained-glass panel with a rising sun and radiating lines.",
+  },
 ];
 
 export default function HomePage() {
@@ -23,23 +44,38 @@ export default function HomePage() {
       <section className={`${editorial.section} ${styles.hero}`}>
         <div className={styles.heroCopy}>
           <p className="eyebrow">A Colophon Press · Ontario, Canada</p>
-          <h1>
+          <Image className={styles.sunburst} src="/images/icons/sunburst.svg" alt="" width={56} height={56} aria-hidden="true" />
+          <h1>Books, Press, Studio</h1>
+          <p className={styles.heroStatement}>
             Writing becomes print.<br />
             Print becomes object.<br />
             What is made here<br />
             stays in the hand.
-          </h1>
+          </p>
           <div className={styles.actions}>
             <CtaLink href="/bookstore">Browse books</CtaLink>
             <CtaLink href="/the-press" variant="secondary">The Press</CtaLink>
-            <CtaLink href="/studio" variant="text">The Studio</CtaLink>
           </div>
         </div>
-        <FramedPlateImage src="/images/glass/hero-hand-mark.png" alt="Stained-glass plate of a hand holding paper." portrait priority />
+        <div className={styles.heroArt}>
+          <FramedPlateImage src="/images/glass/hero-hand-mark.png" alt="Stained-glass panel of a hand, pages, leaves, and a ruby mark." portrait priority />
+        </div>
       </section>
 
-      <section className={`${editorial.section} ${editorial.featureGrid}`} aria-label="Read, make, and record">
-        {features.map((feature) => <FeatureCell key={feature.href} {...feature} />)}
+      <section className={`${editorial.section} ${styles.featureGrid}`} aria-label="Explore Colophon">
+        {features.map((feature) => (
+          <article className={styles.featureCard} key={feature.href}>
+            <div className={styles.featureImage}>
+              <Image src={feature.image} alt={feature.imageAlt} fill sizes="(max-width: 48rem) 34vw, 14vw" />
+            </div>
+            <div className={styles.featureCopy}>
+              <Image className={styles.cardSunburst} src="/images/icons/sunburst.svg" alt="" width={40} height={40} aria-hidden="true" />
+              <h2>{feature.title}</h2>
+              <p>{feature.description}</p>
+              <CtaLink href={feature.href} variant="text">{feature.ctaLabel}</CtaLink>
+            </div>
+          </article>
+        ))}
       </section>
 
       <section className={editorial.section}>

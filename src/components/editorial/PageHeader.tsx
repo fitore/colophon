@@ -8,6 +8,7 @@ interface PageHeaderProps {
   note?: string;
   image?: string;
   imageAlt?: string;
+  imagePortrait?: boolean;
 }
 
 export default function PageHeader({
@@ -17,6 +18,7 @@ export default function PageHeader({
   note,
   image,
   imageAlt = "",
+  imagePortrait = false,
 }: PageHeaderProps) {
   return (
     <header className={`${styles.section} ${styles.pageHeader}`}>
@@ -26,7 +28,7 @@ export default function PageHeader({
         <p className={styles.pageIntro}>{intro}</p>
         {note ? <p className={styles.note}>{note}</p> : null}
       </div>
-      {image ? <FramedPlateImage src={image} alt={imageAlt} priority /> : null}
+      {image ? <FramedPlateImage src={image} alt={imageAlt} portrait={imagePortrait} priority /> : null}
     </header>
   );
 }

@@ -9,7 +9,7 @@ import styles from "./page.module.css";
 export default function BookstorePage() {
   return (
     <>
-      <PageHeader title="Bookstore" intro="Curated books that shape how we read, think, and make." note="This shelf is experimental and will change as the catalogue takes shape." image="/images/glass/bookstore-header.png" imageAlt="Framed stained-glass plate for the bookstore." />
+      <PageHeader title="Bookstore" intro="Curated books that shape how we read, think, and make." note="This shelf is experimental and will change as the catalogue takes shape." image="/images/glass/bookstore-pillar.png" imageAlt="Stained-glass panel of pages, a leaf, and a ruby mark." imagePortrait />
       <section className={editorial.section}>
         <div className={editorial.tabs}>{["All Books", "Poetry", "Essays", "Letterpress", "Craft", "Art"].map((item) => <span key={item}>{item}</span>)}</div>
         <div className={styles.grid}>{books.map((book) => <BookCard key={book.slug} book={book} />)}</div>
