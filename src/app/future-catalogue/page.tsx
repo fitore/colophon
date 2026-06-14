@@ -8,7 +8,7 @@ import styles from "./page.module.css";
 export default function FutureCataloguePage() {
   return (
     <>
-      <PageHeader title="Future Catalogue" intro="A study for editions, prints, books, and objects made with care and intention." note="This is a preview study, not a live catalogue. Availability, details, and prices are placeholders." image="/images/glass/vision-panel.png" imageAlt="Framed stained-glass plate for the future catalogue." />
+      <PageHeader title="Future Catalogue" intro="A study for editions, prints, books, and objects made with care and intention." note="This is a preview study, not a live catalogue. Availability, details, and prices are placeholders." />
       <section className={editorial.section}>
         <div className={editorial.tabs}>{["Editions", "Prints", "Books", "Objects"].map((item) => <span key={item}>{item}</span>)}</div>
         <div className={styles.grid}>

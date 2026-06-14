@@ -24,7 +24,7 @@ const services = ["Fine-art paper prints", "Small edition proofing", "Artwork do
 export default function StudioPage() {
   return (
     <>
-      <PageHeader title="The Studio" intro="A space for visiting artists, makers, and restorers. Workshops in printmaking, drawing, and book arts. Open sessions for independent work. Conservation and restoration for prints, posters, and works on paper. Fine-art printing services for artists and photographers." image="/images/press/press-index-paper-stack.png" imageAlt="Framed plate of paper and tools." />
+      <PageHeader title="The Studio" intro="A space for visiting artists, makers, and restorers. Workshops in printmaking, drawing, and book arts. Open sessions for independent work. Conservation and restoration for prints, posters, and works on paper. Fine-art printing services for artists and photographers." image="/images/glass/studio-panel.png" imageAlt="Stained-glass panel of a raised hand, arches, and radiating lines." imagePortrait />
 
       <section className={editorial.section}>
         <SectionHeading label="Ways In" />

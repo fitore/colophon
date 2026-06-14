@@ -35,7 +35,7 @@ const features = [
     href: "/studio",
     ctaLabel: "See the programme",
     image: "/images/glass/studio-panel.png",
-    imageAlt: "Small stained-glass panel with a rising sun and radiating lines.",
+    imageAlt: "Small stained-glass panel with a raised hand, arches, and radiating lines.",
   },
 ];
 
@@ -59,7 +59,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className={styles.heroArt}>
-          <FramedPlateImage src="/images/glass/hero-hand-mark.png" alt="Stained-glass panel of a hand, pages, leaves, and a ruby mark." portrait priority />
+          <FramedPlateImage src="/images/glass/hero-hand-mark.png" alt="Stained-glass panel of a hand, pages, leaves, and a ruby mark." portrait priority frameless />
         </div>
       </section>
 
