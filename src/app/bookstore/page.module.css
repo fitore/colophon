@@ -22,6 +22,20 @@
   color: var(--color-text-muted);
 }
 
+.cafeNote {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  color: var(--color-text-muted);
+}
+
+.comingSoon {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
 @media (max-width: 48rem) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -29,5 +43,10 @@
 
   .inquiry {
     grid-template-columns: 1fr;
+  }
+
+  .cafeNote {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
