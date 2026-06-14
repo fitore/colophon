@@ -1,8 +1,8 @@
+import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import FeatureCell from "@/components/editorial/FeatureCell";
 import PageHeader from "@/components/editorial/PageHeader";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import CtaLink from "@/components/ui/CtaLink";
-import { recordMailto } from "@/lib/types";
 import editorial from "@/components/editorial/editorial.module.css";
 import styles from "./page.module.css";
 
@@ -20,19 +20,6 @@ const events = [
 ];
 
 const services = ["Fine-art paper prints", "Small edition proofing", "Artwork documentation", "Paper selection", "File preparation", "Portfolio prints"];
-
-const studioNotes = [
-  {
-    title: "Friday Drawing Table",
-    meta: "Coming soon · Open Studio",
-    description: "A quiet shared table for sketchbooks, observational drawing, and low-pressure practice.",
-  },
-  {
-    title: "Paper & Ink Clinic",
-    meta: "Coming soon · Printing",
-    description: "A guided session for choosing paper, proofing images, and preparing files for fine-art printing.",
-  },
-];
 
 export default function StudioPage() {
   return (
@@ -68,32 +55,12 @@ export default function StudioPage() {
         <ul className={styles.services}>{services.map((service) => <li key={service}>{service}</li>)}</ul>
       </section>
 
-      <section className={`${editorial.section} ${styles.studioRecord}`}>
-        <div className={styles.notesColumn}>
-          <div className={styles.recordHeading}>
-            <p className="eyebrow">Studio Notes</p>
-            <p>A programme study while the workshop and print room take shape.</p>
-          </div>
-          <div className={styles.notesList}>
-            {studioNotes.map((note) => (
-              <article className={styles.note} key={note.title}>
-                <p className={styles.noteMeta}>{note.meta}</p>
-                <h2>{note.title}</h2>
-                <p>{note.description}</p>
-                <CtaLink href="#programme" variant="text">Details</CtaLink>
-              </article>
-            ))}
-          </div>
-        </div>
-        <div className={styles.recordColumn}>
-          <div>
-            <p className="eyebrow">Newsletter</p>
-            <h2>Keep the Record</h2>
-          </div>
-          <p>Notes on print, studio openings, editions, workshops, and the work of making.</p>
-          <CtaLink href={recordMailto()} external>Join the list</CtaLink>
-        </div>
+      <section className={`${editorial.section} ${styles.community}`}>
+        <p className="eyebrow">Community Note</p>
+        <p>The programme is a study, not a booking calendar. Visiting instructors arrive weekly. Sessions are kept small.<br /><br />Join the studio list to hear when classes, open sessions, and restoration services are ready to take bookings.</p>
+        <CtaLink href={`mailto:hello@colophon.press?subject=${encodeURIComponent("Join the studio list")}`} external variant="secondary">Join the studio list</CtaLink>
       </section>
+      <NewsletterStrip body="Notes on print, studio openings, editions, workshops, and the work of making." />
     </>
   );
 }
