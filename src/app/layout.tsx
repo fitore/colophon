@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { DM_Mono, Fraunces, Inter } from "next/font/google";
 import PageShell from "@/components/layout/PageShell";
 import "@/styles/tokens.css";
 import "@/styles/global.css";
@@ -17,6 +17,13 @@ const inter = Inter({
   variable: "--font-body",
 });
 
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+  weight: ["400", "500"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Colophon",
@@ -30,7 +37,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${inter.variable} ${dmMono.variable}`}>
       <body>
         <PageShell>{children}</PageShell>
       </body>

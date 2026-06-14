@@ -1,4 +1,3 @@
-import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import FeatureCell from "@/components/editorial/FeatureCell";
 import PageHeader from "@/components/editorial/PageHeader";
 import SectionHeading from "@/components/editorial/SectionHeading";
@@ -60,7 +59,6 @@ export default function StudioPage() {
         <p>The programme is a study, not a booking calendar. Visiting instructors arrive weekly. Sessions are kept small.<br /><br />Join the studio list to hear when classes, open sessions, and restoration services are ready to take bookings.</p>
         <CtaLink href={`mailto:hello@colophon.press?subject=${encodeURIComponent("Join the studio list")}`} external variant="secondary">Join the studio list</CtaLink>
       </section>
-      <NewsletterStrip body="Notes on print, studio openings, editions, workshops, and the work of making." />
     </>
   );
 }

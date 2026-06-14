@@ -1,4 +1,3 @@
-import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import PageHeader from "@/components/editorial/PageHeader";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import PressCard from "@/components/press/PressCard";
@@ -14,7 +13,6 @@ export default function PressPage() {
         <div className={editorial.tabs}>{["All", "Essays", "Notes", "Interviews", "Process", "Updates"].map((item) => <span key={item}>{item}</span>)}</div>
         {pressPosts.map((post) => <PressCard key={post.slug} post={post} />)}
       </section>
-      <NewsletterStrip />
     </>
   );
 }

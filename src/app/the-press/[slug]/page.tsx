@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import PageHeader from "@/components/editorial/PageHeader";
 import { getPressPost, pressPosts } from "@/lib/press";
 import editorial from "@/components/editorial/editorial.module.css";
@@ -23,7 +22,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <span>{next ? <Link href={`/the-press/${next.slug}`}>Next →</Link> : null}</span>
         </nav>
       </article>
-      <NewsletterStrip />
     </>
   );
 }

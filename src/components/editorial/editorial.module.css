@@ -90,23 +90,6 @@
   text-underline-offset: 4px;
 }
 
-.newsletter {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr auto;
-  align-items: center;
-  gap: var(--space-6);
-  border-block: var(--border-hairline);
-}
-
-.newsletter h2 {
-  margin-top: var(--space-2);
-  font-size: var(--text-3xl);
-}
-
-.newsletter p {
-  color: var(--color-text-muted);
-}
-
 .prose {
   max-width: 46rem;
   margin-inline: auto;
@@ -132,8 +115,7 @@
 }
 
 @media (max-width: 48rem) {
-  .pageHeader,
-  .newsletter {
+  .pageHeader {
     grid-template-columns: 1fr;
   }
 

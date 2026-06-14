@@ -1,5 +1,4 @@
 import Image from "next/image";
-import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import PageHeader from "@/components/editorial/PageHeader";
 import { visionProducts } from "@/lib/visionProducts";
 import editorial from "@/components/editorial/editorial.module.css";
@@ -26,7 +25,6 @@ export default function FutureCataloguePage() {
           ))}
         </div>
       </section>
-      <NewsletterStrip />
     </>
   );
 }
