@@ -10,8 +10,9 @@ Phase 1 is presence + soft commerce:
 - Home
 - Bookstore
 - The Press
+- The Studio
 - About
-- Hidden future catalogue taster at /vision-catalogue
+- Hidden future catalogue taster at /future-catalogue
 
 This is a PMF experiment without a paid platform. Do not build full ecommerce yet.
 
@@ -58,6 +59,10 @@ This is a PMF experiment without a paid platform. Do not build full ecommerce ye
 - Every meaningful image needs alt text.
 - **Dummy data leaves all image fields undefined.** Components render a CSS placeholder when `src` is missing. Never reference an image path that doesn't exist on disk — `next/image` will error.
 - **Encode mailto subjects** with `encodeURIComponent` so titles with spaces/punctuation don't mangle.
+- **Glass artwork is user-managed.** Do not replace, regenerate, rename, or edit files in `public/images/glass/` unless explicitly requested.
+- Glass artwork renders frameless, without CSS borders, and never has text overlaid.
+- “Keep the Record” appears once in the global footer across the entire site. Do not add page-level or Studio-specific newsletter sections.
+- The global footer has one ornament divider above it and no internal rules.
 
 ## Routes
 
@@ -66,16 +71,32 @@ This is a PMF experiment without a paid platform. Do not build full ecommerce ye
 - `/bookstore/[slug]` Optional book detail
 - `/the-press` Editorial index
 - `/the-press/[slug]` Editorial post
+- `/studio` Studio programme and services
 - `/about` About
-- `/vision-catalogue` Hidden future catalogue taster, linked quietly from About
+- `/future-catalogue` Hidden future catalogue taster, linked quietly from About
+- `/vision-catalogue` Legacy redirect to `/future-catalogue`
 - `not-found.tsx` Custom 404
 
 ## Main nav
 
-`BOOKSTORE | THE PRESS | ABOUT`
+`BOOKSTORE | THE PRESS | THE STUDIO | ABOUT`
 
 No cart icon. No search in Phase 1 unless explicitly requested later.
-`/vision-catalogue` is NOT in the main nav — it is linked only from /about.
+`/future-catalogue` is NOT in the main nav — it is linked only from /about.
+
+## Glass artwork
+
+Current page mappings:
+
+```txt
+Home hero: hero-hand-mark.png
+Bookstore: bookstore-pillar.png
+The Press: press-pillar.png
+The Studio: studio-panel.png
+About: about-panel.png
+```
+
+When a user manually replaces an image while keeping the same filename, verify the actual file contents before changing code. If Next.js serves a stale version, clear `.next`, restart the development server, and rebuild. A checkerboard visibly embedded in the source image is part of the asset, not a cache issue.
 
 ## CTA language
 
@@ -99,6 +120,8 @@ Newsletter/record interest uses:
 
 `mailto:hello@expressed.press?subject=` + `encodeURIComponent('Keep the Record')`
 
+The repository currently contains both `hello@expressed.press` and `hello@colophon.press`. Treat the canonical contact domain as unresolved; do not standardize or replace either address without explicit direction.
+
 ## Content
 
 Bookstore is a curated concept shelf of external books. Start with dummy data.
@@ -116,7 +139,7 @@ export interface Book {
 }
 ```
 
-The full future catalogue (editions, prints, objects, provenance, scarcity) belongs on `/vision-catalogue` via the `VisionProduct` model — NOT in the bookstore `Book` model.
+The full future catalogue (editions, prints, objects, provenance, scarcity) belongs on `/future-catalogue` via the `VisionProduct` model — NOT in the bookstore `Book` model.
 
 ## Agent behavior
 
@@ -126,3 +149,4 @@ The full future catalogue (editions, prints, objects, provenance, scarcity) belo
 - If a script is missing, add it (`"typecheck": "tsc --noEmit"`).
 - Stop and report what changed, what passed, and what remains.
 - One task, one diff, one commit. Do not expand scope. Do not build multiple phases in one pass.
+- After a pull request is merged, update `main` and create a new branch for the next isolated change. Do not continue adding commits to the merged branch.

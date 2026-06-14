@@ -1,5 +1,4 @@
 import Link from "next/link";
-import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import PageHeader from "@/components/editorial/PageHeader";
 import editorial from "@/components/editorial/editorial.module.css";
 import styles from "./page.module.css";
@@ -18,7 +17,6 @@ export default function AboutPage() {
       <section className={`${editorial.section} ${styles.links}`} aria-label="Explore Colophon">
         {links.map(([href, label]) => <Link href={href} key={href}>{label}<span>→</span></Link>)}
       </section>
-      <NewsletterStrip />
     </>
   );
 }

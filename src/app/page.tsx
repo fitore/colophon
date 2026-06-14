@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import BookCard from "@/components/books/BookCard";
-import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import FramedPlateImage from "@/components/ui/FramedPlateImage";
 import CtaLink from "@/components/ui/CtaLink";
@@ -91,7 +90,6 @@ export default function HomePage() {
         {pressPosts.slice(0, 2).map((post) => <PressCard key={post.slug} post={post} />)}
         <Link href="/the-press" className={styles.allLink}>View all projects →</Link>
       </section>
-      <NewsletterStrip />
     </>
   );
 }

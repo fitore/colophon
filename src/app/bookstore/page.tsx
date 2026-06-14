@@ -1,5 +1,4 @@
 import BookCard from "@/components/books/BookCard";
-import NewsletterStrip from "@/components/editorial/NewsletterStrip";
 import PageHeader from "@/components/editorial/PageHeader";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import CtaLink from "@/components/ui/CtaLink";
@@ -29,7 +28,6 @@ export default function BookstorePage() {
         </div>
         <p className={styles.comingSoon}>Coming soon</p>
       </aside>
-      <NewsletterStrip />
     </>
   );
 }
