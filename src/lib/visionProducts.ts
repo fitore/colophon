@@ -2,8 +2,8 @@ import type { VisionProduct } from "@/lib/types";
 
 /**
  * Hidden future-catalogue taster — dummy data for /vision-catalogue.
- * Most images are intentionally left undefined so components render the
- * CSS placeholder; the two approved glass panels are wired where they fit.
+ * Images are intentionally left undefined so components render the
+ * CSS placeholder.
  * scarcityLabel carries the ruby status language reserved for this page.
  */
 export const visionProducts: VisionProduct[] = [
@@ -18,8 +18,6 @@ export const visionProducts: VisionProduct[] = [
     edition: "Edition of 50",
     scarcityLabel: "First 50",
     provenance: "Set and bound in Ontario, Canada.",
-    image: "/images/glass/vision-panel.png",
-    imageAlt: "Small stained-glass panel for Future Catalogue page.",
   },
   {
     slug: "colophon-print-i",
@@ -32,8 +30,6 @@ export const visionProducts: VisionProduct[] = [
     edition: "Edition of 25",
     scarcityLabel: "12 remaining",
     provenance: "Signed and numbered.",
-    image: "/images/glass/vision-print-panel.png",
-    imageAlt: "Future catalogue print panel crop.",
   },
   {
     slug: "the-quiet-page-deluxe",

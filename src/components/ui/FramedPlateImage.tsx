@@ -6,6 +6,7 @@ interface FramedPlateImageProps {
   alt: string;
   portrait?: boolean;
   priority?: boolean;
+  frameless?: boolean;
 }
 
 export default function FramedPlateImage({
@@ -13,9 +14,10 @@ export default function FramedPlateImage({
   alt,
   portrait = false,
   priority = false,
+  frameless = false,
 }: FramedPlateImageProps) {
   return (
-    <div className={`${styles.frame} ${portrait ? styles.portrait : ""}`}>
+    <div className={`${styles.frame} ${portrait ? styles.portrait : ""} ${frameless ? styles.frameless : ""}`}>
       {src ? (
         <Image src={src} alt={alt} fill priority={priority} sizes="(max-width: 48rem) 90vw, 42vw" className={styles.image} />
       ) : (

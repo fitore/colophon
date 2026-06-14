@@ -14,27 +14,28 @@ import styles from "./page.module.css";
 const features = [
   {
     title: "Bookstore",
-    description: "Curated books that shape how we read, make, and remember.",
+    description: "New and vintage, side by side.\nBooks from the press and books found elsewhere.\nPrints and posters, made and collected.\nA shelf that changes.",
     href: "/bookstore",
-    ctaLabel: "Browse books",
+    ctaLabel: "Browse the collection",
     image: "/images/glass/bookstore-pillar.png",
     imageAlt: "Small stained-glass panel with pages and a ruby mark.",
+    note: "Café coming soon — adjacent to the bookstore.",
   },
   {
     title: "The Press",
-    description: "Essays, notes, and reflections on print, editions, and the work of making.",
+    description: "Where new books, prints, and posters are made.\nEverything in the shop that carries the Colophon name\nstarts here.",
     href: "/the-press",
-    ctaLabel: "Explore the press",
+    ctaLabel: "See what's in progress",
     image: "/images/glass/press-pillar.png",
     imageAlt: "Small stained-glass panel with pages, a sun, and a ruby mark.",
   },
   {
     title: "The Studio",
-    description: "Workshops, open studio sessions, drawing, printmaking, and art printing.",
+    description: "Adjacent to the bookstore.\nVisiting artists and restorers arrive here.\nWorkshops, open sessions, and conservation work.",
     href: "/studio",
-    ctaLabel: "Visit the studio",
+    ctaLabel: "See the programme",
     image: "/images/glass/studio-panel.png",
-    imageAlt: "Small stained-glass panel with a rising sun and radiating lines.",
+    imageAlt: "Small stained-glass panel with a raised hand, arches, and radiating lines.",
   },
 ];
 
@@ -58,7 +59,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className={styles.heroArt}>
-          <FramedPlateImage src="/images/glass/hero-hand-mark.png" alt="Stained-glass panel of a hand, pages, leaves, and a ruby mark." portrait priority />
+          <FramedPlateImage src="/images/glass/hero-hand-mark.png" alt="Stained-glass panel of a hand, pages, leaves, and a ruby mark." portrait priority frameless />
         </div>
       </section>
 
@@ -73,28 +74,22 @@ export default function HomePage() {
               <h2>{feature.title}</h2>
               <p>{feature.description}</p>
               <CtaLink href={feature.href} variant="text">{feature.ctaLabel}</CtaLink>
+              {feature.note ? <p className={styles.featureNote}>{feature.note}</p> : null}
             </div>
           </article>
         ))}
       </section>
 
       <section className={editorial.section}>
-        <SectionHeading label="Colophon Books" intro="A changing shelf for reading, thinking, and making." />
+        <SectionHeading label="The Shelf" intro="Books, prints, posters, and related objects, made and found." />
         <div className={styles.bookGrid}>{books.slice(0, 4).map((book) => <BookCard key={book.slug} book={book} />)}</div>
-        <Link href="/bookstore" className={styles.allLink}>All books →</Link>
+        <Link href="/bookstore" className={styles.allLink}>View the collection →</Link>
       </section>
 
       <section className={editorial.section}>
-        <SectionHeading label="From The Press" intro="Recent notes and essays from the workbench." />
+        <SectionHeading label="From the Press" intro="Recent notes on what's being made, how, and why." />
         {pressPosts.slice(0, 2).map((post) => <PressCard key={post.slug} post={post} />)}
-      </section>
-
-      <section className={editorial.section}>
-        <SectionHeading label="Studio Notes" intro="A programme study while the workshop and print room take shape." />
-        <div className={styles.studioNotes}>
-          <p>Coming soon</p><h3>Friday Drawing Table</h3><p>Open Studio</p><Link href="/studio">Details →</Link>
-          <p>Coming soon</p><h3>Paper &amp; Ink Clinic</h3><p>Printing</p><Link href="/studio">Details →</Link>
-        </div>
+        <Link href="/the-press" className={styles.allLink}>View all projects →</Link>
       </section>
       <NewsletterStrip />
     </>

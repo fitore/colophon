@@ -101,6 +101,16 @@
 .featureCopy p {
   max-width: 30ch;
   color: var(--color-text-muted);
+  white-space: pre-line;
+}
+
+.featureCopy .featureNote {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: var(--border-hairline);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 
 @media (max-width: 70rem) {
@@ -134,29 +144,6 @@
   text-transform: uppercase;
 }
 
-.studioNotes {
-  display: grid;
-  grid-template-columns: 8rem 1fr 10rem auto;
-  align-items: center;
-}
-
-.studioNotes > * {
-  padding-block: var(--space-4);
-  border-bottom: var(--border-hairline);
-}
-
-.studioNotes p,
-.studioNotes a {
-  color: var(--color-text-muted);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-
-.studioNotes h3 {
-  font-size: var(--text-xl);
-}
-
 @media (max-width: 48rem) {
   .hero {
     grid-template-columns: 1fr;
@@ -187,13 +174,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .studioNotes {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .studioNotes > * {
-    padding-block: var(--space-3);
-  }
 }
 
 @media (max-width: 32rem) {

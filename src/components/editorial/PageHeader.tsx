@@ -28,7 +28,7 @@ export default function PageHeader({
         <p className={styles.pageIntro}>{intro}</p>
         {note ? <p className={styles.note}>{note}</p> : null}
       </div>
-      {image ? <FramedPlateImage src={image} alt={imageAlt} portrait={imagePortrait} priority /> : null}
+      {image ? <FramedPlateImage src={image} alt={imageAlt} portrait={imagePortrait} priority frameless={image.startsWith("/images/glass/")} /> : null}
     </header>
   );
 }

@@ -13,7 +13,7 @@ export default function FeatureCell({ title, description, href, ctaLabel }: Feat
     <article className={styles.featureCell}>
       <h3>{title}</h3>
       <p>{description}</p>
-      <CtaLink href={href} variant="text">{ctaLabel}</CtaLink>
+      <CtaLink href={href} external={href.startsWith("mailto:")} variant="text">{ctaLabel}</CtaLink>
     </article>
   );
 }
