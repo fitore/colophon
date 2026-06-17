@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookCard from "@/components/books/BookCard";
+import CatalogCard from "@/components/catalog/CatalogCard";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import FramedPlateImage from "@/components/ui/FramedPlateImage";
 import CtaLink from "@/components/ui/CtaLink";
 import PressCard from "@/components/press/PressCard";
-import { books } from "@/lib/books";
-import { pressPosts } from "@/lib/press";
+import { publicAcquirables, publishedEssays } from "@/data";
 import editorial from "@/components/editorial/editorial.module.css";
 import styles from "./page.module.css";
 
@@ -39,6 +38,11 @@ const features = [
 ];
 
 export default function HomePage() {
+  const featuredItems = [
+    ...publicAcquirables.filter((item) => item.type === "book").slice(0, 3),
+    ...publicAcquirables.filter((item) => item.type === "print").slice(0, 1),
+  ];
+
   return (
     <>
       <section className={`${editorial.section} ${styles.hero}`}>
@@ -81,13 +85,17 @@ export default function HomePage() {
 
       <section className={editorial.section}>
         <SectionHeading label="The Shelf" intro="New and previously loved books, Colophon titles, and prints from the studio and beyond." />
-        <div className={styles.bookGrid}>{books.slice(0, 4).map((book) => <BookCard key={book.slug} book={book} />)}</div>
+        <div className={styles.bookGrid}>
+          {featuredItems.map((item) => (
+            <CatalogCard key={`${item.type}-${item.slug}`} item={item} />
+          ))}
+        </div>
         <Link href="/bookstore" className={styles.allLink}>View the collection →</Link>
       </section>
 
       <section className={editorial.section}>
         <SectionHeading label="From the Press" intro="Books from Colophon, with essays and notes from the press." />
-        {pressPosts.slice(0, 2).map((post) => <PressCard key={post.slug} post={post} />)}
+        {publishedEssays.slice(0, 2).map((post) => <PressCard key={post.slug} post={post} />)}
         <Link href="/the-press" className={styles.allLink}>Explore the Press →</Link>
       </section>
     </>

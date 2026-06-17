@@ -1,0 +1,97 @@
+import type { Book } from "@/types/catalog";
+import {
+  aldousFenn,
+  edithCalloway,
+  idrisBowe,
+  miraSolenne,
+  noorAdesina,
+  tomasWren,
+} from "./people";
+import { colophonSource, externalPublisherSource, secondhandSource } from "./sources";
+
+export const books: Book[] = [
+  {
+    type: "book",
+    slug: "on-making",
+    title: "On Making",
+    condition: "new",
+    source: colophonSource,
+    status: "for-sale",
+    contributors: [{ person: aldousFenn, role: "author" }],
+    description: "A meditation on the hand and the page — why slow making still matters in a fast catalogue.",
+    formats: ["Softcover"],
+    isbn: "978-1-00000-001-1",
+    price: { amount: 32, currency: "CAD" },
+  },
+  {
+    type: "book",
+    slug: "the-quiet-page",
+    title: "The Quiet Page",
+    condition: "new",
+    source: colophonSource,
+    status: "forthcoming",
+    contributors: [{ person: miraSolenne, role: "author" }],
+    description: "Essays on white space, restraint, and the dignity of the unfilled margin.",
+    formats: ["Clothbound"],
+  },
+  {
+    type: "book",
+    slug: "margins",
+    title: "Margins",
+    condition: "used",
+    source: secondhandSource,
+    status: "for-sale",
+    contributors: [{ person: tomasWren, role: "author" }],
+    description: "Marginalia as a form of thought — readers writing back to the books that shaped them.",
+    formats: ["Paperback"],
+    price: { amount: 18, currency: "CAD" },
+  },
+  {
+    type: "book",
+    slug: "the-art-of-hand-composition",
+    title: "The Art of Hand Composition",
+    condition: "new",
+    source: externalPublisherSource,
+    status: "for-sale",
+    contributors: [{ person: edithCalloway, role: "author" }],
+    description: "A practical history of setting type by hand, from the composing stick to the proof.",
+    formats: ["Hardcover"],
+    price: { amount: 45, currency: "CAD" },
+  },
+  {
+    type: "book",
+    slug: "forms-of-permanence",
+    title: "Forms of Permanence",
+    condition: "new",
+    source: colophonSource,
+    status: "out-of-print",
+    contributors: [{ person: idrisBowe, role: "author" }],
+    description: "What survives a century — paper, binding, and the quiet engineering of a book built to last.",
+    formats: ["Sewn hardcover"],
+    isbn: "978-1-00000-002-8",
+  },
+  {
+    type: "book",
+    slug: "the-book-as-shelter",
+    title: "The Book as Shelter",
+    condition: "used",
+    source: secondhandSource,
+    status: "for-sale",
+    contributors: [{ person: noorAdesina, role: "author" }],
+    description: "On reading as refuge — the book as a small, well-made room you can carry.",
+  },
+  {
+    type: "book",
+    slug: "a-field-guide-to-paper",
+    title: "A Field Guide to Paper",
+    condition: "new",
+    source: colophonSource,
+    status: "draft",
+    contributors: [{ person: miraSolenne, role: "editor" }],
+    description: "A working study of fibres, surfaces, and the marks they hold.",
+  },
+];
+
+export function getBook(slug: string): Book | undefined {
+  return books.find((book) => book.slug === slug);
+}

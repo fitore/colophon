@@ -2,6 +2,13 @@
   margin-top: var(--space-3);
 }
 
+.editions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-7) var(--space-5);
+  padding-top: var(--space-6);
+}
+
 .event {
   display: grid;
   grid-template-columns: 8rem 1fr 10rem 6rem;
@@ -73,6 +80,10 @@
 }
 
 @media (max-width: 48rem) {
+  .editions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .event {
     grid-template-columns: 1fr 1fr;
   }

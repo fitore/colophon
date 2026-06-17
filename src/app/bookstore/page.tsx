@@ -1,8 +1,8 @@
-import BookCard from "@/components/books/BookCard";
+import CatalogGrid from "@/components/catalog/CatalogGrid";
 import PageHeader from "@/components/editorial/PageHeader";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import CtaLink from "@/components/ui/CtaLink";
-import { books } from "@/lib/books";
+import { publicAcquirables } from "@/data";
 import editorial from "@/components/editorial/editorial.module.css";
 import styles from "./page.module.css";
 
@@ -12,8 +12,7 @@ export default function BookstorePage() {
       <PageHeader title="Bookstore" intro="New and previously loved books — Colophon’s own titles and books from other publishers — plus prints from the studio and beyond." image="/images/glass/bookstore-pillar.png" imageAlt="Stained-glass panel of pages, a leaf, and a ruby mark." imagePortrait />
       <section className={editorial.section}>
         <SectionHeading label="The Shelf" intro="A changing collection of our own titles, new books from other publishers, previously loved books, and selected art prints." />
-        <div className={editorial.tabs}>{["All Books", "Poetry", "Essays", "Letterpress", "Craft", "Art"].map((item) => <span key={item}>{item}</span>)}</div>
-        <div className={styles.grid}>{books.map((book) => <BookCard key={book.slug} book={book} />)}</div>
+        <CatalogGrid items={publicAcquirables} />
       </section>
       <section className={`${editorial.section} ${styles.inquiry}`}>
         <div><p className="eyebrow">Looking for something?</p><h2>Ask about the shelf.</h2></div>
