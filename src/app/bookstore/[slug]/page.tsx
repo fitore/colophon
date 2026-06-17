@@ -5,6 +5,7 @@ import {
   formatMoney,
   getAcquirable,
   getAcquisitionCta,
+  getCatalogueImage,
   getContributorLabel,
   getOriginLabel,
   getStatusLabel,
@@ -16,11 +17,7 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
   const item = getAcquirable(slug);
   if (!item) notFound();
   const cta = getAcquisitionCta(item);
-  const image = item.image ?? (
-    item.type === "book"
-      ? "/images/books/placeholder-book.png"
-      : "/images/books/print-placeholder.png"
-  );
+  const image = getCatalogueImage(item);
   const details =
     item.type === "book"
       ? [item.formats?.join(", "), item.isbn ? `ISBN ${item.isbn}` : undefined]

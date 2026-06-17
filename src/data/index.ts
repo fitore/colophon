@@ -43,6 +43,18 @@ export function getOriginLabel(source: Source): string {
   return "Selected from elsewhere";
 }
 
+export function getCatalogueImage(item: Acquirable): string {
+  if (item.image) return item.image;
+  if (item.source.kind === "external") {
+    return item.type === "book"
+      ? "/images/books/placeholder-external-book.png"
+      : "/images/books/placeholder-external-print.png";
+  }
+  return item.type === "book"
+    ? "/images/books/placeholder-book.png"
+    : "/images/books/print-placeholder.png";
+}
+
 export function getContributorLabel(item: Book | Print | Essay): string {
   const primary = item.contributors[0];
   if (!primary) return "";

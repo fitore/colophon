@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   formatMoney,
   getAcquisitionCta,
+  getCatalogueImage,
   getContributorLabel,
   getOriginLabel,
   getStatusLabel,
@@ -13,11 +14,7 @@ import styles from "./CatalogCard.module.css";
 export default function CatalogCard({ item }: { item: Acquirable }) {
   const href = `/bookstore/${item.slug}`;
   const cta = getAcquisitionCta(item);
-  const image = item.image ?? (
-    item.type === "book"
-      ? "/images/books/placeholder-book.png"
-      : "/images/books/print-placeholder.png"
-  );
+  const image = getCatalogueImage(item);
   const details =
     item.type === "book"
       ? [item.formats?.join(", "), item.isbn ? `ISBN ${item.isbn}` : undefined]
