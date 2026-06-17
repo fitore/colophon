@@ -16,7 +16,11 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
   const item = getAcquirable(slug);
   if (!item) notFound();
   const cta = getAcquisitionCta(item);
-  const image = item.image ?? (item.type === "book" ? "/images/books/placeholder-book.png" : undefined);
+  const image = item.image ?? (
+    item.type === "book"
+      ? "/images/books/placeholder-book.png"
+      : "/images/books/print-placeholder.png"
+  );
   const details =
     item.type === "book"
       ? [item.formats?.join(", "), item.isbn ? `ISBN ${item.isbn}` : undefined]
@@ -30,7 +34,9 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
         intro={getContributorLabel(item)}
         note={item.description}
         image={image}
-        imageAlt={item.image ? `${item.type === "book" ? "Cover" : "Artwork"} of ${item.title}` : `Placeholder cover for ${item.title}`}
+        imageAlt={item.image
+          ? `${item.type === "book" ? "Cover" : "Artwork"} of ${item.title}`
+          : `Placeholder ${item.type === "book" ? "cover" : "artwork"} for ${item.title}`}
       />
       <section className={editorial.section}>
         <p>{getOriginLabel(item.source)}</p>

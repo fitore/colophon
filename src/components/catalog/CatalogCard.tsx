@@ -13,7 +13,11 @@ import styles from "./CatalogCard.module.css";
 export default function CatalogCard({ item }: { item: Acquirable }) {
   const href = `/bookstore/${item.slug}`;
   const cta = getAcquisitionCta(item);
-  const image = item.image ?? (item.type === "book" ? "/images/books/placeholder-book.png" : undefined);
+  const image = item.image ?? (
+    item.type === "book"
+      ? "/images/books/placeholder-book.png"
+      : "/images/books/print-placeholder.png"
+  );
   const details =
     item.type === "book"
       ? [item.formats?.join(", "), item.isbn ? `ISBN ${item.isbn}` : undefined]
@@ -26,7 +30,9 @@ export default function CatalogCard({ item }: { item: Acquirable }) {
           {image ? (
             <Image
               src={image}
-              alt={item.image ? `${item.type === "book" ? "Cover" : "Artwork"} of ${item.title}` : `Placeholder cover for ${item.title}`}
+              alt={item.image
+                ? `${item.type === "book" ? "Cover" : "Artwork"} of ${item.title}`
+                : `Placeholder ${item.type === "book" ? "cover" : "artwork"} for ${item.title}`}
               fill
               sizes="(max-width: 48rem) 50vw, 16rem"
               className={styles.coverImage}
