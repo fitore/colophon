@@ -13,7 +13,7 @@ import styles from "./page.module.css";
 const features = [
   {
     title: "Bookstore",
-    description: "New and vintage, side by side.\nBooks from the press and books found elsewhere.\nPrints and posters, made and collected.\nA shelf that changes.",
+    description: "New and previously loved books — our own titles and others’ — plus prints from the studio and beyond.",
     href: "/bookstore",
     ctaLabel: "Browse the collection",
     image: "/images/glass/bookstore-pillar.png",
@@ -22,7 +22,7 @@ const features = [
   },
   {
     title: "The Press",
-    description: "Where new books, prints, and posters are made.\nEverything in the shop that carries the Colophon name\nstarts here.",
+    description: "The Press publishes books under the Colophon name, with essays and editorial work as part of the wider record.",
     href: "/the-press",
     ctaLabel: "See what's in progress",
     image: "/images/glass/press-pillar.png",
@@ -43,9 +43,9 @@ export default function HomePage() {
     <>
       <section className={`${editorial.section} ${styles.hero}`}>
         <div className={styles.heroCopy}>
-          <p className="eyebrow">A Colophon Press · Ontario, Canada</p>
+          <p className="eyebrow">Colophon · Ontario, Canada</p>
           <Image className={styles.sunburst} src="/images/icons/sunburst.svg" alt="" width={56} height={56} aria-hidden="true" />
-          <h1>Books, Press, Studio</h1>
+          <h1>Publishing House, Bookshop, Print Studio</h1>
           <p className={styles.heroStatement}>
             Writing becomes print.<br />
             Print becomes object.<br />
@@ -80,15 +80,15 @@ export default function HomePage() {
       </section>
 
       <section className={editorial.section}>
-        <SectionHeading label="The Shelf" intro="Books, prints, posters, and related objects, made and found." />
+        <SectionHeading label="The Shelf" intro="New and previously loved books, Colophon titles, and prints from the studio and beyond." />
         <div className={styles.bookGrid}>{books.slice(0, 4).map((book) => <BookCard key={book.slug} book={book} />)}</div>
         <Link href="/bookstore" className={styles.allLink}>View the collection →</Link>
       </section>
 
       <section className={editorial.section}>
-        <SectionHeading label="From the Press" intro="Recent notes on what's being made, how, and why." />
+        <SectionHeading label="From the Press" intro="Books from Colophon, with essays and notes from the press." />
         {pressPosts.slice(0, 2).map((post) => <PressCard key={post.slug} post={post} />)}
-        <Link href="/the-press" className={styles.allLink}>View all projects →</Link>
+        <Link href="/the-press" className={styles.allLink}>Explore the Press →</Link>
       </section>
     </>
   );

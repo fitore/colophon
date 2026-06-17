@@ -12,7 +12,7 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
 
   return (
     <>
-      <PageHeader eyebrow={book.category} title={book.title} intro={book.author} note={book.note} image={book.coverImage} imageAlt={book.coverAlt} />
+      <PageHeader eyebrow={book.category} title={book.title} intro={`Author: ${book.author}`} note={book.note} image={book.coverImage} imageAlt={book.coverAlt} />
       <section className={editorial.section}>
         <CtaLink href={book.acquireUrl ?? acquireMailto(book.title)} external>Inquire about this book</CtaLink>
       </section>

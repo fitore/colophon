@@ -7,9 +7,9 @@ import editorial from "@/components/editorial/editorial.module.css";
 export default function PressPage() {
   return (
     <>
-      <PageHeader title="The Press" intro="We make books, prints, and posters under the Colophon name. Each title is designed and produced in the studio. What comes off the press goes into the shop." image="/images/glass/press-pillar.png" imageAlt="Stained-glass panel of pages, a sun, and a ruby mark." imagePortrait />
+      <PageHeader title="The Press" intro="The Press publishes books under the Colophon name. Essays, notes, and editorial work form part of the wider record around those books." image="/images/glass/press-pillar.png" imageAlt="Stained-glass panel of pages, a sun, and a ruby mark." imagePortrait />
       <section className={editorial.section}>
-        <SectionHeading label="From the Workbench" intro="Notes on what's being made, how, and why." />
+        <SectionHeading label="From the Workbench" intro="Essays and notes on the books, materials, and work of the press." />
         <div className={editorial.tabs}>{["All", "Essays", "Notes", "Interviews", "Process", "Updates"].map((item) => <span key={item}>{item}</span>)}</div>
         {pressPosts.map((post) => <PressCard key={post.slug} post={post} />)}
       </section>

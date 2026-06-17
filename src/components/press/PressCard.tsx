@@ -26,7 +26,7 @@ export default function PressCard({ post }: { post: PressPost }) {
         <p>{post.dek}</p>
         <p className={styles.meta}>{formatDate(post.date)} · {post.category}</p>
       </div>
-      <Link href={href} className={styles.read}>Read essay →</Link>
+      <Link href={href} className={styles.read}>Read →</Link>
     </article>
   );
 }
