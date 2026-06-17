@@ -8,15 +8,26 @@ import type {
   Source,
 } from "@/types/catalog";
 import { mainCatalogue } from "./catalogues";
+import { books } from "./books";
+import { prints } from "./prints";
 
 export * from "./books";
 export * from "./catalogues";
 export * from "./essays";
+export * from "./filters";
 export * from "./people";
 export * from "./prints";
 export * from "./sources";
 
 export const publicAcquirables = mainCatalogue.features.filter((item) => item.status !== "draft");
+
+export function getPressBooks(): Book[] {
+  return books.filter((book) => book.source.kind === "imprint" && book.status !== "draft");
+}
+
+export function getStudioPrints(): Print[] {
+  return prints.filter((print) => print.source.kind === "studio" && print.status !== "draft");
+}
 
 export function getAcquirable(slug: string): Acquirable | undefined {
   return publicAcquirables.find((item) => item.slug === slug);

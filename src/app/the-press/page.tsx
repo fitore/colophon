@@ -2,7 +2,7 @@ import PageHeader from "@/components/editorial/PageHeader";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import CatalogCard from "@/components/catalog/CatalogCard";
 import PressCard from "@/components/press/PressCard";
-import { books, publishedEssays } from "@/data";
+import { getPressBooks, publishedEssays } from "@/data";
 import editorial from "@/components/editorial/editorial.module.css";
 import styles from "@/app/bookstore/page.module.css";
 
@@ -13,9 +13,7 @@ export default function PressPage() {
       <section className={editorial.section}>
         <SectionHeading label="Colophon Editions" intro="Books published under the Colophon imprint and available through the shop according to their current status." />
         <div className={styles.grid}>
-          {books
-            .filter((book) => book.source.kind === "imprint" && book.status !== "draft")
-            .map((book) => <CatalogCard key={book.slug} item={book} />)}
+          {getPressBooks().map((book) => <CatalogCard key={book.slug} item={book} />)}
         </div>
       </section>
       <section className={editorial.section}>
