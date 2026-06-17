@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s · Colophon",
   },
   description:
-    "Colophon is an online-first publishing, press, and bookshop experiment based in Ontario, Canada.",
+    "Colophon is a publishing house, bookshop, and print studio based in Ontario, Canada.",
 };
 
 export default function RootLayout({

@@ -48,7 +48,7 @@ export const pressPosts: PressPost[] = [
     category: "Dispatch",
     body: [
       "Colophon begins online, quietly, as an experiment in publishing without a storefront. No cart, no countdown — only books worth recording an interest in.",
-      "The Press is where we think out loud about that experiment: the editions we are planning, the makers we admire, the small decisions that add up to a house style.",
+      "The Press is where we publish books under the Colophon name and keep a wider record of the editions, materials, and makers around them.",
       "If something here resonates, keep the record. We'll write when there is something true to say.",
     ],
     heroImage: "/images/press/notes-from-the-press-thumb.png",

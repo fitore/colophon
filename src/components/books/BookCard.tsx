@@ -28,7 +28,7 @@ export default function BookCard({ book }: { book: Book }) {
       <h3 className={styles.title}>
         <Link href={href}>{book.title}</Link>
       </h3>
-      <p className={styles.author}>{book.author}</p>
+      <p className={styles.author}>Author: {book.author}</p>
       <Link href={href} className={styles.view}>
         View Book
       </Link>

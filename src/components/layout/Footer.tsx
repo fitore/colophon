@@ -19,7 +19,7 @@ export default function Footer() {
         </div>
         <div className={styles.bottomBar}>
           <p>Ontario, Canada</p>
-          <p>© Colophon Press</p>
+          <p>© Colophon</p>
           <p>
             <a href="https://instagram.com/expressed">Instagram</a>
             <span aria-hidden="true"> · </span>
