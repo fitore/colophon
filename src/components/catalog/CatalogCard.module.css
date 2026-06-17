@@ -5,6 +5,10 @@
   gap: var(--space-2);
 }
 
+.placeholderCard {
+  width: 60%;
+}
+
 .coverLink {
   width: 100%;
   margin-bottom: var(--space-3);
@@ -67,4 +71,10 @@
 
 .disabled {
   color: var(--color-text-muted);
+}
+
+@media (max-width: 48rem) {
+  .placeholderCard {
+    width: 100%;
+  }
 }

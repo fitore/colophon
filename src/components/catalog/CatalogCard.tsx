@@ -24,7 +24,7 @@ export default function CatalogCard({ item }: { item: Acquirable }) {
       : [item.medium, item.dimensions, item.edition];
 
   return (
-    <article className={styles.card}>
+    <article className={`${styles.card} ${item.image ? "" : styles.placeholderCard}`}>
       <Link href={href} className={styles.coverLink} aria-label={`View ${item.title}`}>
         <div className={styles.cover}>
           {image ? (
