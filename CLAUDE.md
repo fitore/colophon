@@ -151,22 +151,40 @@ Catalogue access follows this boundary:
 page or component
   -> named query in src/catalog/queries.ts
       -> CatalogRepository port
-          -> static adapter
-              -> src/data
+          -> hybrid repository
+              -> Neon adapter for main operational Books
+              -> static adapter for Prints, Essays, and Future Catalogue
 ```
 
-- `CatalogRepository` is asynchronous so consumers do not depend on the static
-  adapter's execution model.
-- `src/catalog/adapters/static-catalog-repository.ts` is the only production
-  code allowed to read raw catalogue records.
+- `CatalogRepository` is asynchronous and exposes independent Book and Print
+  reads so static consumers do not acquire a Neon dependency.
+- Neon is the system of record for main operational Books when `DATABASE_URL`
+  is configured.
+- `src/catalog/adapters/static-catalog-repository.ts` owns static Prints,
+  Essays, Future Catalogue records, and the documented local Book fallback.
 - Pages consume named business projections such as `getBookstoreItems()`,
   `getPressItems()`, `getStudioItems()`, and `getFutureCatalogueItems()`.
 - Presentation helpers and client-side catalogue filters live in `src/catalog/`;
   they do not define storage.
 - Direct `@/data` imports from `src/app` and `src/components` are prohibited by
   ESLint and an architecture test.
-- Keep the repository port intentionally small. Do not introduce an ORM, SDK
-  framework, database, or storage-shaped methods without an explicit task.
+- Keep the repository port intentionally small. Storage routing belongs in the
+  hybrid repository, never in pages or projections.
+- Future Catalogue remains static, including Book snapshots whose slugs overlap
+  main operational Books.
+- Missing `DATABASE_URL` outside Vercel uses the static Book fallback and warns
+  once per server/build process. Missing `DATABASE_URL` when `VERCEL_ENV` is set
+  is an error. Neon query failures must not silently fall back.
+- Database migration and seeding are explicit operational steps:
+  `pnpm db:migrate` creates the Book table/view and `pnpm db:seed:books`
+  idempotently upserts the seven main operational Books.
+- Git branches and Neon branches are independent. Before running database
+  commands, verify that `DATABASE_URL` targets the intended Neon project,
+  branch, and database.
+- Vercel Preview has been verified against a migrated and seeded Neon database.
+  Production must be migrated and seeded after this Round 2 change reaches
+  `main`, then configured with the matching pooled `DATABASE_URL` before its
+  deployment.
 
 Architecture decisions and meaning are documented in:
 
@@ -174,6 +192,9 @@ Architecture decisions and meaning are documented in:
 - `docs/ontology.md`
 - `docs/projection-map.md`
 - `docs/adr/ADR-001-repo-as-system-of-record.md`
+- `docs/adr/ADR-002-neon-as-system-of-record-for-main-books.md`
+- `docs/system-of-record-registry.md`
+- `docs/data-flow-round-2.md`
 
 Core entities:
 - `Book`

@@ -1,19 +1,21 @@
 import type { Acquirable, Book, Essay, Print } from "@/types/catalog";
 import type { CatalogRepository } from "./repository";
-import { staticCatalogRepository } from "./adapters/static-catalog-repository";
+import { catalogRepository } from "./catalog-repository";
 
 export function createCatalogQueries(repository: CatalogRepository) {
   const getBookstoreItems = async (): Promise<Acquirable[]> =>
-    (await repository.getMainCatalogue()).features.filter((item) => item.status !== "draft");
+    [...(await repository.getBooks()), ...(await repository.getPrints())].filter(
+      (item) => item.status !== "draft",
+    );
 
   const getPressItems = async (): Promise<Book[]> =>
-    (await getBookstoreItems()).filter(
-      (item): item is Book => item.type === "book" && item.source.kind === "imprint",
+    (await repository.getBooks()).filter(
+      (book) => book.status !== "draft" && book.source.kind === "imprint",
     );
 
   const getStudioItems = async (): Promise<Print[]> =>
-    (await getBookstoreItems()).filter(
-      (item): item is Print => item.type === "print" && item.source.kind === "studio",
+    (await repository.getPrints()).filter(
+      (print) => print.status !== "draft" && print.source.kind === "studio",
     );
 
   const getFutureCatalogueItems = async (): Promise<Acquirable[]> =>
@@ -41,4 +43,4 @@ export const {
   getPublishedEssays,
   getAcquirable,
   getEssay,
-} = createCatalogQueries(staticCatalogRepository);
+} = createCatalogQueries(catalogRepository);
