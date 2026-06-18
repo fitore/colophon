@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getContributorLabel } from "@/data";
+import { getContributorLabel } from "@/catalog/presentation";
 import type { Essay } from "@/types/catalog";
 import styles from "./PressCard.module.css";
 

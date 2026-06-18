@@ -4,7 +4,7 @@ test("homepage presents books and prints", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Publishing House, Bookshop, Print Studio",
+    "Bookstore,Press,Studio",
   );
   await expect(page.getByText("Book", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("Print", { exact: true })).toBeVisible();

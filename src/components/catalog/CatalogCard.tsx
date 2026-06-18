@@ -7,7 +7,7 @@ import {
   getContributorLabel,
   getOriginLabel,
   getStatusLabel,
-} from "@/data";
+} from "@/catalog/presentation";
 import type { Acquirable } from "@/types/catalog";
 import styles from "./CatalogCard.module.css";
 

@@ -5,7 +5,7 @@ import {
   catalogueFilters,
   matchesCatalogueFilter,
   type CatalogueFilter,
-} from "@/data";
+} from "@/catalog/filters";
 import type { Acquirable } from "@/types/catalog";
 import CatalogCard from "./CatalogCard";
 import styles from "./CatalogGrid.module.css";

@@ -5,7 +5,7 @@ import SectionHeading from "@/components/editorial/SectionHeading";
 import FramedPlateImage from "@/components/ui/FramedPlateImage";
 import CtaLink from "@/components/ui/CtaLink";
 import PressCard from "@/components/press/PressCard";
-import { publicAcquirables, publishedEssays } from "@/data";
+import { getBookstoreItems, getPublishedEssays } from "@/catalog/queries";
 import editorial from "@/components/editorial/editorial.module.css";
 import styles from "./page.module.css";
 
@@ -37,10 +37,14 @@ const features = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [bookstoreItems, publishedEssays] = await Promise.all([
+    getBookstoreItems(),
+    getPublishedEssays(),
+  ]);
   const featuredItems = [
-    ...publicAcquirables.filter((item) => item.type === "book").slice(0, 3),
-    ...publicAcquirables.filter((item) => item.type === "print").slice(0, 1),
+    ...bookstoreItems.filter((item) => item.type === "book").slice(0, 3),
+    ...bookstoreItems.filter((item) => item.type === "print").slice(0, 1),
   ];
 
   return (
