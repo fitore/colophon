@@ -3,7 +3,7 @@ import CatalogCard from "@/components/catalog/CatalogCard";
 import PageHeader from "@/components/editorial/PageHeader";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import CtaLink from "@/components/ui/CtaLink";
-import { getStudioPrints } from "@/data";
+import { getStudioItems } from "@/catalog/queries";
 import editorial from "@/components/editorial/editorial.module.css";
 import styles from "./page.module.css";
 
@@ -22,7 +22,8 @@ const events = [
 
 const services = ["Fine-art paper prints", "Small edition proofing", "Artwork documentation", "Paper selection", "File preparation", "Portfolio prints"];
 
-export default function StudioPage() {
+export default async function StudioPage() {
+  const studioItems = await getStudioItems();
   return (
     <>
       <PageHeader title="The Studio" intro="A space for visiting artists, makers, and restorers. Workshops in printmaking, drawing, and book arts. Open sessions for independent work. Conservation and restoration for prints, posters, and works on paper. Fine-art printing services for artists and photographers." image="/images/glass/studio-panel.png" imageAlt="Stained-glass panel of a raised hand, arches, and radiating lines." imagePortrait />
@@ -35,7 +36,7 @@ export default function StudioPage() {
       <section className={editorial.section}>
         <SectionHeading label="Studio Editions" intro="Prints made here and available through the shop when for sale." />
         <div className={styles.editions}>
-          {getStudioPrints().map((print) => <CatalogCard key={print.slug} item={print} />)}
+          {studioItems.map((print) => <CatalogCard key={print.slug} item={print} />)}
         </div>
       </section>
 

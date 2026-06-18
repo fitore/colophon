@@ -1,20 +1,20 @@
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/editorial/PageHeader";
 import CtaLink from "@/components/ui/CtaLink";
+import { getAcquirable } from "@/catalog/queries";
 import {
   formatMoney,
-  getAcquirable,
   getAcquisitionCta,
   getCatalogueImage,
   getContributorLabel,
   getOriginLabel,
   getStatusLabel,
-} from "@/data";
+} from "@/catalog/presentation";
 import editorial from "@/components/editorial/editorial.module.css";
 
 export default async function BookPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const item = getAcquirable(slug);
+  const item = await getAcquirable(slug);
   if (!item) notFound();
   const cta = getAcquisitionCta(item);
   const image = getCatalogueImage(item);

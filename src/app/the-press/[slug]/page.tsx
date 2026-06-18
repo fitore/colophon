@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/editorial/PageHeader";
-import { getContributorLabel, getEssay, publishedEssays } from "@/data";
+import { getEssay, getPublishedEssays } from "@/catalog/queries";
+import { getContributorLabel } from "@/catalog/presentation";
 import editorial from "@/components/editorial/editorial.module.css";
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getEssay(slug);
+  const post = await getEssay(slug);
   if (!post) notFound();
+  const publishedEssays = await getPublishedEssays();
   const index = publishedEssays.findIndex((item) => item.slug === slug);
   const previous = publishedEssays[index - 1];
   const next = publishedEssays[index + 1];

@@ -21,9 +21,9 @@ export default function Footer() {
           <p>Ontario, Canada</p>
           <p>© Colophon</p>
           <p>
-            <a href="https://instagram.com/expressed">Instagram</a>
+            <a href="https://instagram.com/colophon">Instagram</a>
             <span aria-hidden="true"> · </span>
-            <a href="https://expressed.substack.com">Substack</a>
+            <a href="https://colophon.substack.com">Substack</a>
           </p>
         </div>
       </Container>

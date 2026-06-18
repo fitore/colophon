@@ -1,4 +1,4 @@
-# Expressed — Project Brief
+# Colophon — Project Brief
 
 Version: 2.0  
 Date: June 2026  
@@ -8,7 +8,7 @@ Purpose: Shared implementation brief for Claude Code and Codex.
 
 ## 1. Product intent
 
-Expressed is an online-first publishing, press, and bookshop experiment based in Ontario, Canada.
+Colophon is an online-first publishing, press, and bookshop experiment based in Ontario, Canada.
 
 Phase 1 is not a full commerce site. It is a **presence + soft-commerce PMF experiment**.
 
@@ -155,7 +155,7 @@ Sections:
 1. Header
 2. Hero
 3. Two pillar cards
-4. Expressed Books row
+4. Colophon Books row
 5. From The Press row
 6. Keep the Record / newsletter mailto
 7. Footer
@@ -220,7 +220,7 @@ Article:
 ### About
 
 Content:
-- What Expressed is
+- What Colophon is
 - That Phase 1 is an experiment
 - Ontario, Canada
 - Quiet link to `/vision-catalogue`

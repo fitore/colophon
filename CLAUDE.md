@@ -124,23 +124,56 @@ Catalogue CTA labels are lifecycle-aware:
 
 Acquire actions use mailto (subject encoded):
 
-`mailto:hello@expressed.press?subject=` + `encodeURIComponent('Acquire: ' + title)`
+`mailto:hello@colophon.press?subject=` + `encodeURIComponent('Acquire: ' + title)`
 
 Newsletter/record interest uses:
 
-`mailto:hello@expressed.press?subject=` + `encodeURIComponent('Keep the Record')`
+`mailto:hello@colophon.press?subject=` + `encodeURIComponent('Keep the Record')`
 
-The repository currently contains both `hello@expressed.press` and `hello@colophon.press`. Treat the canonical contact domain as unresolved; do not standardize or replace either address without explicit direction.
+The canonical contact address is `hello@colophon.press`. Do not introduce
+legacy brand names or contact domains.
 
-## Domain model
+## Catalogue architecture
 
-The shared typed domain layer lives in `src/types/catalog.ts` and `src/data/`.
+The shared typed domain layer lives in `src/types/catalog.ts`. Repository-owned
+static records live in `src/data/`; pages and components must not import them
+directly.
 
 ```txt
 Catalog / Shop = system of record for what is sold
 Production / Press & Studio = origin contexts for what Colophon makes
 Commerce = action layer over anything Acquirable
 ```
+
+Catalogue access follows this boundary:
+
+```txt
+page or component
+  -> named query in src/catalog/queries.ts
+      -> CatalogRepository port
+          -> static adapter
+              -> src/data
+```
+
+- `CatalogRepository` is asynchronous so consumers do not depend on the static
+  adapter's execution model.
+- `src/catalog/adapters/static-catalog-repository.ts` is the only production
+  code allowed to read raw catalogue records.
+- Pages consume named business projections such as `getBookstoreItems()`,
+  `getPressItems()`, `getStudioItems()`, and `getFutureCatalogueItems()`.
+- Presentation helpers and client-side catalogue filters live in `src/catalog/`;
+  they do not define storage.
+- Direct `@/data` imports from `src/app` and `src/components` are prohibited by
+  ESLint and an architecture test.
+- Keep the repository port intentionally small. Do not introduce an ORM, SDK
+  framework, database, or storage-shaped methods without an explicit task.
+
+Architecture decisions and meaning are documented in:
+
+- `docs/data-architecture.md`
+- `docs/ontology.md`
+- `docs/projection-map.md`
+- `docs/adr/ADR-001-repo-as-system-of-record.md`
 
 Core entities:
 - `Book`
@@ -154,10 +187,10 @@ Core entities:
 Books and prints are sibling sellable objects in the shared catalogue. Do not create independent page-specific arrays such as `bookstoreBooks`, `pressBooks`, or `studioPrints`.
 
 Page projections:
-- `/bookstore` renders public, non-draft `Acquirable` items from the main catalogue.
-- `/the-press` renders non-draft books whose source kind is `imprint`, plus published essays as supporting editorial.
-- `/studio` renders non-draft prints whose source kind is `studio`, alongside programme and service content.
-- `/future-catalogue` reads from the hidden `visionCatalogue` object. It must remain absent from the main navigation.
+- `/bookstore` consumes the Bookstore projection: public, non-draft `Acquirable` items from the main catalogue.
+- `/the-press` consumes the Press and published-Essay projections: non-draft books whose source kind is `imprint`, plus published essays as supporting editorial.
+- `/studio` consumes the Studio projection: non-draft prints whose source kind is `studio`, alongside programme and service content.
+- `/future-catalogue` consumes the hidden Future Catalogue projection. It must remain absent from the main navigation.
 
 Contributors use one shared `Person` model. Roles such as author, artist, editor, translator, illustrator, and printer live on the relationship.
 
