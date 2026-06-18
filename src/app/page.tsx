@@ -49,7 +49,11 @@ export default function HomePage() {
         <div className={styles.heroCopy}>
           <p className="eyebrow">Colophon · Ontario, Canada</p>
           <Image className={styles.sunburst} src="/images/icons/sunburst.svg" alt="" width={56} height={56} aria-hidden="true" />
-          <h1>Publishing House, Bookshop, Print Studio</h1>
+          <h1>
+            Bookstore,<br />
+            Press,<br />
+            Studio
+          </h1>
           <p className={styles.heroStatement}>
             Writing becomes print.<br />
             Print becomes object.<br />

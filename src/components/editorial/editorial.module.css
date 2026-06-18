@@ -18,6 +18,11 @@
   gap: var(--space-4);
 }
 
+.pageHeaderArt {
+  width: min(100%, 25rem);
+  justify-self: center;
+}
+
 .pageTitle {
   font-size: var(--text-5xl);
 }
@@ -117,6 +122,10 @@
 @media (max-width: 48rem) {
   .pageHeader {
     grid-template-columns: 1fr;
+  }
+
+  .pageHeaderArt {
+    width: min(100%, 24rem);
   }
 
   .featureGrid {
