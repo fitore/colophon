@@ -35,15 +35,43 @@ Scope:
 The proof is that pages no longer import repository-owned static records.
 Instead, they request business concepts through the catalogue query surface.
 
-## Round 2 — introduce Neon deliberately
+## Round 2 — Neon for main operational Books
 
-Round 2 is future work, and must not begin until the Round 1 seam exists. One
-entity—`Book`—may move behind a Neon-backed adapter while Print, Essay, Studio,
-and other records remain static. The existing catalogue becomes seed data and
-`Acquirable` may be represented as a serving projection or SQL view.
+Round 2 uses the Round 1 seam to move main operational Books behind a
+Neon-backed adapter. Prints, Essays, Studio content, and the Future Catalogue
+remain static. Static Books remain as seed input, a local-development fallback,
+and rollback material.
 
-The intended proof is one ontology, two storage backends, and zero consumer
-changes.
+```text
+page or component
+  → named catalogue query
+    → hybrid CatalogRepository
+      ├── Neon Book adapter → books
+      └── static adapter → Prints, Essays, Future Catalogue
+```
+
+The proof is one ontology, two storage backends, and zero page-level consumer
+changes. The repository contract is domain-oriented: Books and Prints can be
+retrieved independently, so Studio retrieval does not acquire a false Neon
+dependency.
+
+`book_acquirables` is a SQL serving projection of the Neon-resident Book subset.
+It is not the whole ontological `Acquirable` concept, which still includes
+static Prints.
+
+### Environment and failure behavior
+
+- When `DATABASE_URL` exists, main operational Books come from Neon.
+- Outside Vercel, a missing `DATABASE_URL` activates one documented static Book
+  fallback and emits a warning.
+- When `VERCEL_ENV` exists, a missing `DATABASE_URL` is a configuration error.
+- A Neon query failure is surfaced; production never silently returns static
+  Books.
+
+No rendering mode was changed for Round 2. The verified Next.js build
+prerenders the Home, Bookstore, Press, Studio, and Future Catalogue listings.
+`/bookstore/[slug]` remains server-rendered on demand and reads through the same
+repository when invoked. No revalidation or forced dynamic rendering was added.
 
 ## Sequencing rule
 

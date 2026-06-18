@@ -1,13 +1,17 @@
 import { mainCatalogue, visionCatalogue } from "@/data/catalogues";
+import { books } from "@/data/books";
 import { essays } from "@/data/essays";
+import { prints } from "@/data/prints";
 import type { CatalogRepository } from "@/catalog/repository";
 
 /**
- * The current repository adapter. This is the production boundary around the
- * repository-owned static records in src/data.
+ * Boundary around repository-owned static records. In the hybrid composition,
+ * Prints, Essays, and Future Catalogue use this adapter in every environment;
+ * Books use it only for the documented local fallback.
  */
 export const staticCatalogRepository: CatalogRepository = {
-  getMainCatalogue: async () => mainCatalogue,
+  getBooks: async () => books,
+  getPrints: async () => prints,
   getFutureCatalogue: async () => visionCatalogue,
   getEssays: async () => essays,
   findAcquirable: async (slug) =>

@@ -1,6 +1,6 @@
 # ADR-001: Repository as the current system of record
 
-- Status: Accepted
+- Status: Superseded in part by ADR-002
 - Date: 2026-06-18
 
 ## Context
@@ -12,6 +12,9 @@ no stable seam for a future storage change.
 
 Round 1 must establish consumer independence without introducing a database or
 changing the site experience.
+
+ADR-002 later moves main operational Books to Neon. This decision remains in
+force for Prints, Essays, Future Catalogue, and the repository/query seam.
 
 ## Decision
 
