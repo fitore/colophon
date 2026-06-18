@@ -19,12 +19,15 @@ This is a PMF experiment without a paid platform. Do not build full ecommerce ye
 ## Stack
 
 - Next.js 16 (App Router)
+- React 19
 - TypeScript strict
 - pnpm
 - CSS Modules
 - CSS custom properties
 - next/font
 - next/image
+- Vitest
+- Playwright
 - Vercel
 
 ## Next.js 16 specifics (read before writing any route)
@@ -57,7 +60,13 @@ This is a PMF experiment without a paid platform. Do not build full ecommerce ye
 - Primary CTAs use ink background and paper text.
 - No text on top of glass artwork.
 - Every meaningful image needs alt text.
-- **Dummy data leaves all image fields undefined.** Components render a CSS placeholder when `src` is missing. Never reference an image path that doesn't exist on disk — `next/image` will error.
+- Dummy data may leave image fields undefined. Catalogue components select the appropriate placeholder asset by item type and source. Real item images always take precedence.
+- Placeholder mappings:
+  - Colophon/imprint book: `/images/books/placeholder-book.png`
+  - External/third-party book: `/images/books/placeholder-external-book.png`
+  - Studio print: `/images/books/print-placeholder.png`
+  - External/third-party print: `/images/books/placeholder-external-print.png`
+- Never reference an image path that doesn't exist on disk — `next/image` will error.
 - **Encode mailto subjects** with `encodeURIComponent` so titles with spaces/punctuation don't mangle.
 - **Glass artwork is user-managed.** Do not replace, regenerate, rename, or edit files in `public/images/glass/` unless explicitly requested.
 - Glass artwork renders frameless, without CSS borders, and never has text overlaid.
@@ -67,11 +76,11 @@ This is a PMF experiment without a paid platform. Do not build full ecommerce ye
 ## Routes
 
 - `/` Home
-- `/bookstore` Curated external-book concept shelf
-- `/bookstore/[slug]` Optional book detail
-- `/the-press` Editorial index
+- `/bookstore` Public catalogue of books and prints
+- `/bookstore/[slug]` Book or print detail
+- `/the-press` Colophon imprint books with supporting editorial
 - `/the-press/[slug]` Editorial post
-- `/studio` Studio programme and services
+- `/studio` Studio prints, programme, and services
 - `/about` About
 - `/future-catalogue` Hidden future catalogue taster, linked quietly from About
 - `/vision-catalogue` Legacy redirect to `/future-catalogue`
@@ -104,11 +113,12 @@ Homepage:
 - `BROWSE BOOKS`
 - `THE PRESS`
 
-Book cards:
-- `VIEW BOOK`
-
-Book/future catalogue CTA:
-- `ACQUIRE`
+Catalogue CTA labels are lifecycle-aware:
+- Draft: `NOT YET AVAILABLE`
+- Forthcoming book: `JOIN THE LIST`
+- For-sale item with price: `INQUIRE / ACQUIRE`
+- For-sale item without price: `INQUIRE`
+- Out-of-print book or sold-out print: `VIEW RECORD`
 
 ## Soft commerce
 
@@ -122,30 +132,47 @@ Newsletter/record interest uses:
 
 The repository currently contains both `hello@expressed.press` and `hello@colophon.press`. Treat the canonical contact domain as unresolved; do not standardize or replace either address without explicit direction.
 
-## Content
+## Domain model
 
-Bookstore is a curated concept shelf of external books. Start with dummy data.
+The shared typed domain layer lives in `src/types/catalog.ts` and `src/data/`.
 
-```ts
-export interface Book {
-  slug: string;
-  title: string;
-  author: string;
-  note: string;
-  category: string;
-  coverImage?: string;   // leave undefined in dummy data
-  coverAlt?: string;
-  acquireUrl?: string;   // defaults to encoded mailto if missing
-}
+```txt
+Catalog / Shop = system of record for what is sold
+Production / Press & Studio = origin contexts for what Colophon makes
+Commerce = action layer over anything Acquirable
 ```
 
-The full future catalogue (editions, prints, objects, provenance, scarcity) belongs on `/future-catalogue` via the `VisionProduct` model — NOT in the bookstore `Book` model.
+Core entities:
+- `Book`
+- `Print`
+- `Essay`
+- `Person`
+- `Source`
+- `Catalogue`
+- `Acquirable = Book | Print`
+
+Books and prints are sibling sellable objects in the shared catalogue. Do not create independent page-specific arrays such as `bookstoreBooks`, `pressBooks`, or `studioPrints`.
+
+Page projections:
+- `/bookstore` renders public, non-draft `Acquirable` items from the main catalogue.
+- `/the-press` renders non-draft books whose source kind is `imprint`, plus published essays as supporting editorial.
+- `/studio` renders non-draft prints whose source kind is `studio`, alongside programme and service content.
+- `/future-catalogue` reads from the hidden `visionCatalogue` object. It must remain absent from the main navigation.
+
+Contributors use one shared `Person` model. Roles such as author, artist, editor, translator, illustrator, and printer live on the relationship.
+
+Lifecycle rules:
+- Draft books, prints, and essays do not appear publicly.
+- Forthcoming books remain visible with a list-interest CTA.
+- Out-of-print books and sold-out prints remain visible as records.
+- Archived essays remain excluded unless an archive pattern is deliberately added.
 
 ## Agent behavior
 
 - Read relevant files before editing.
 - Make the smallest change that satisfies the task.
-- Run `pnpm typecheck` and `pnpm build` (these are the gates). Run `pnpm lint` if a script exists.
+- Run `pnpm typecheck`, `pnpm test`, and `pnpm build` as the core gates. Run `pnpm lint` if a script exists.
+- Run `pnpm test:e2e` for route, interaction, projection, or client-side filtering changes. Visual regression testing is not configured.
 - If a script is missing, add it (`"typecheck": "tsc --noEmit"`).
 - Stop and report what changed, what passed, and what remains.
 - One task, one diff, one commit. Do not expand scope. Do not build multiple phases in one pass.

@@ -1,7 +1,9 @@
 import FeatureCell from "@/components/editorial/FeatureCell";
+import CatalogCard from "@/components/catalog/CatalogCard";
 import PageHeader from "@/components/editorial/PageHeader";
 import SectionHeading from "@/components/editorial/SectionHeading";
 import CtaLink from "@/components/ui/CtaLink";
+import { getStudioPrints } from "@/data";
 import editorial from "@/components/editorial/editorial.module.css";
 import styles from "./page.module.css";
 
@@ -28,6 +30,13 @@ export default function StudioPage() {
       <section className={editorial.section}>
         <SectionHeading label="Ways In" />
         <div className={editorial.featureGrid}>{waysIn.map((item) => <FeatureCell key={item.title} {...item} />)}</div>
+      </section>
+
+      <section className={editorial.section}>
+        <SectionHeading label="Studio Editions" intro="Prints made here and available through the shop when for sale." />
+        <div className={styles.editions}>
+          {getStudioPrints().map((print) => <CatalogCard key={print.slug} item={print} />)}
+        </div>
       </section>
 
       <section className={editorial.section} id="programme">

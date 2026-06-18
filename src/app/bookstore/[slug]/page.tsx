@@ -1,20 +1,45 @@
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/editorial/PageHeader";
 import CtaLink from "@/components/ui/CtaLink";
-import { getBook } from "@/lib/books";
-import { acquireMailto } from "@/lib/types";
+import {
+  formatMoney,
+  getAcquirable,
+  getAcquisitionCta,
+  getCatalogueImage,
+  getContributorLabel,
+  getOriginLabel,
+  getStatusLabel,
+} from "@/data";
 import editorial from "@/components/editorial/editorial.module.css";
 
 export default async function BookPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const book = getBook(slug);
-  if (!book) notFound();
+  const item = getAcquirable(slug);
+  if (!item) notFound();
+  const cta = getAcquisitionCta(item);
+  const image = getCatalogueImage(item);
+  const details =
+    item.type === "book"
+      ? [item.formats?.join(", "), item.isbn ? `ISBN ${item.isbn}` : undefined]
+      : [item.medium, item.dimensions, item.edition];
 
   return (
     <>
-      <PageHeader eyebrow={book.category} title={book.title} intro={`Author: ${book.author}`} note={book.note} image={book.coverImage} imageAlt={book.coverAlt} />
+      <PageHeader
+        eyebrow={item.type === "book" ? "Book" : "Print"}
+        title={item.title}
+        intro={getContributorLabel(item)}
+        note={item.description}
+        image={image}
+        imageAlt={item.image
+          ? `${item.type === "book" ? "Cover" : "Artwork"} of ${item.title}`
+          : `Placeholder ${item.type === "book" ? "cover" : "artwork"} for ${item.title}`}
+      />
       <section className={editorial.section}>
-        <CtaLink href={book.acquireUrl ?? acquireMailto(book.title)} external>Inquire about this book</CtaLink>
+        <p>{getOriginLabel(item.source)}</p>
+        <p>{item.condition === "new" ? "New" : "Used"} · {getStatusLabel(item)}{item.price ? ` · ${formatMoney(item.price)}` : ""}</p>
+        {details.some(Boolean) ? <p>{details.filter(Boolean).join(" · ")}</p> : null}
+        {cta.href ? <CtaLink href={cta.href} external>{cta.label}</CtaLink> : <p>{cta.label}</p>}
       </section>
     </>
   );
